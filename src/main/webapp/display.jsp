@@ -11,8 +11,8 @@
 <body>
 	<h3>게시글 내용</h3>
 <%
-	String subject="",memo="",name="",time="",email="";
-	int id = Integer.parseInt(request.getParameter("id"));
+	String subject="",memo="",name="",time="",email="",id="";
+	int num = Integer.parseInt(request.getParameter("num"));
 	
 	Connection conn = null;
 	Statement stmt = null;

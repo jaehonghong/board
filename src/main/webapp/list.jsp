@@ -19,6 +19,8 @@
 	<td>이메일</td>
 	</tr>
 <%
+	String level = (String)session.getAttribute("level");
+
 	Connection conn = null;
 	Statement stmt = null;
 	try{
@@ -31,12 +33,12 @@
 		e.printStackTrace();
 	}
 	stmt = conn.createStatement();
-	String sql = "SELECT * FROM message ORDER BY id asc";
+	String sql = "SELECT * FROM message ORDER BY num asc";
 	ResultSet rs = stmt.executeQuery(sql);
 	
 	if(rs!=null){
 		while(rs.next()){
-			int id = Integer.parseInt(rs.getString("id"));
+			int id = Integer.parseInt(rs.getString("num"));
 			
 %>
 
@@ -52,8 +54,11 @@
 	}
 %>
 	</table>
-	
+	<%
+	if(level.equals("3")){%>		
 	<a href="write.jsp">게시글 쓰기</a>
+	<%}%>
+	
 	<%
 	if(stmt != null)
 		stmt.close();
