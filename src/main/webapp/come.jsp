@@ -14,7 +14,7 @@
     	out.println("<script>");
 		out.println("location.href='list.jsp'");
 		out.println("</script>");
-    }
+    } 
     %>
 <!DOCTYPE html>
 <html>

@@ -1,4 +1,3 @@
-<%@page import="javax.naming.InitialContext"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     <%@ page import="java.sql.*" %>
@@ -12,9 +11,9 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	try{
-		Class.forName("org.mariadb.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/testdb3";
-		conn = DriverManager.getConnection(url,"java","java");
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/mariaDB");
+		conn=ds.getConnection();
 		
 		pstmt=conn.prepareStatement("SELECT * FROM message_id WHERE id=?");
 		pstmt.setString(1,id);
@@ -25,11 +24,11 @@
 				session.setAttribute("id",id);
 				session.setAttribute("level", level);
 				out.println("<script>");
-				out.println("location.href='come.jsp'");
+				out.println("location.href='order.jsp'");
 				out.println("</script>");			
 		}
 		out.println("<script>");
-		out.println("½ÇÆÐ");
+		out.println("location.href='index.jsp'");
 		out.println("</script>");
 		
 		
